@@ -17,4 +17,11 @@ class ToDosController < ApplicationController
         render json: @to_do, status: :created
     end
 
+    def destroy
+        @to_do = ToDo.find(params[:id])
+
+        @to_do.destroy
+        render status: :no_content
+    end
+
 end
