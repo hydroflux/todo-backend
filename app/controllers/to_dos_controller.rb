@@ -1,5 +1,7 @@
 class ToDosController < ApplicationController
 
+    before_action :find_to_do, only: [:update, :destroy]
+
     def index
         @todos = ToDo.all
 
@@ -17,11 +19,19 @@ class ToDosController < ApplicationController
         render json: @to_do, status: :created
     end
 
-    def destroy
-        @to_do = ToDo.find(params[:id])
+    def update
 
+    end
+
+    def destroy
         @to_do.destroy
         render status: :no_content
+    end
+
+    private
+
+    def find_to_do
+        ToDo.find(params[:id])
     end
 
 end
