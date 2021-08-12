@@ -5,7 +5,7 @@ class ToDosController < ApplicationController
     def index
         @todos = ToDo.all
 
-        render json: @todos
+        render json: @todos, status: :ok
     end
 
     def create
