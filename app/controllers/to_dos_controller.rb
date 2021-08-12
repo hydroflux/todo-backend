@@ -9,22 +9,20 @@ class ToDosController < ApplicationController
     end
 
     def create
-        @to_do = ToDo.create(
-            title: params[:title],
-            content: params[:content],
-            urgent: params[:urgent],
-            done: params[:done]
-        )
+        @to_do = ToDo.create(to_do_params)
 
         render json: @to_do, status: :created
     end
 
     def update
+        @to_do.update(to_do_params)
 
+        render json: @to_do, status: :ok
     end
 
     def destroy
         @to_do.destroy
+
         render status: :no_content
     end
 
@@ -32,6 +30,10 @@ class ToDosController < ApplicationController
 
     def find_to_do
         ToDo.find(params[:id])
+    end
+
+    def to_do_params
+        params.require(:to_do).permit(:title, :content, :urgent, :done)
     end
 
 end
