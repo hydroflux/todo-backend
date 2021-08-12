@@ -10,3 +10,4 @@ ToDo.destroy_all
 ToDo.create title: "First To Do", content: "This is my first to do item", urgent: false, done: false
 ToDo.create title: "Second To Do", content: "This is my second to do item", urgent: false, done: false
 ToDo.create title: "Third To Do", content: "This is my third to do item", urgent: true, done: false
+ToDo.create title: "Fourth To Do", content: "This is my Fourth to do item", urgent: true, done: false
