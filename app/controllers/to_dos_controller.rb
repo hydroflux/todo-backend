@@ -29,11 +29,11 @@ class ToDosController < ApplicationController
     private
 
     def find_to_do
-        ToDo.find(params[:id])
+        @to_do = ToDo.find(params[:id])
     end
 
     def to_do_params
-        params.require(:to_do).permit(:title, :content, :urgent, :done)
+        params.require(:to_do).permit(:id, :title, :content, :urgent, :done)
     end
 
 end
