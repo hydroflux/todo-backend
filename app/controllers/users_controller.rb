@@ -1,15 +1,16 @@
 class UsersController < ApplicationController
 
-    before_action: 
+    # before_action: 
 
     def create
         @user = User.new(user_params)
 
         if @user.valid?
-            User.save(@user)
-            render json: @user, status: :created
+            @user.save
+            @token = JWT.encode({ user_id: @user.id }, "some_secret" )
+            render json: { user: @user, token: @token }, status: :created
         else
-            render json: { error: "Username has already been taken" }, status: :not_acceptable
+            render json: { error: @user.errors.full_messages }, status: :not_acceptable
         end
     end
 
