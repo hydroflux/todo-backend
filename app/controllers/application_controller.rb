@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
     def current_user
         @auth_header = request.headers['Authorization']
         if @auth_header
-            @token = auth_header.split(" ")[1]
+            @token = @auth_header.split(" ")[1]
             # Use the begin / rescue because we don't want the entire app to break if a bad token comes back
             begin
                 @user_id = JWT.decode(token, 'some secret')[0]["user_id"]
