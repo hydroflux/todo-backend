@@ -11,7 +11,7 @@ class ApplicationController < ActionController::API
             @token = @auth_header.split(" ")[1]
             # Use the begin / rescue because we don't want the entire app to break if a bad token comes back
             begin
-                @user_id = JWT.decode(token, 'some secret')[0]["user_id"]
+                @user_id = JWT.decode(@token, 'some secret')[0]["user_id"]
                 # when we 'encode' we're using user_id, so we're grabbing user_id when we decode as well
             rescue JWT::DecodeError
                 nil
