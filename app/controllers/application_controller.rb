@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::API
+    before_action :authorized
+    skip_before_action :login
 
     # Current user allows us to see if there is a de-coded token
     # Anytime you're sending a token from your front-end to your back-end, you want to do that from your auth header
@@ -20,6 +22,7 @@ class ApplicationController < ActionController::API
     end
 
     def logged_in?
+        # Double-bang turns into a boolean (making it truthy or falsey)
         !!current_user
     end
 
