@@ -1,5 +1,5 @@
 class ToDosController < ApplicationController
-
+    skip_before_action :authorized, only: [:update, :destroy]
     before_action :find_to_do, only: [:update, :destroy]
 
     def index
@@ -33,7 +33,7 @@ class ToDosController < ApplicationController
     end
 
     def to_do_params
-        params.require(:to_do).permit(:id, :title, :content, :urgent, :done)
+        params.require(:to_do).permit(:user_id, :title, :content, :urgent, :done)
     end
 
 end
